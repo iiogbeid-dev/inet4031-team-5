@@ -1,4 +1,4 @@
-# INET 4031: Team [number] Repository
+# INET 4031: Team  5 Repository
 
 This is the semester-long repository for our team's INET 4031 Systems Administration
 project: an incident-tracking application built and operated across nine weeks,
@@ -45,7 +45,7 @@ repo, it will never replace this repository.
 
 ## Team Documents
 
-**Google Doc:** [Google Doc link will go here]
+**Google Doc:** https://docs.google.com/document/d/1E9aBJ_7PBr31woAIbSlTFrklVGIhTFYxEqSZ7CEm2-c/edit?usp=sharing
 
 All sprint reflections, screenshots, and storage-check output are recorded in this
 document as each week's wiki directions require.
