@@ -2,7 +2,7 @@
 
 QA is responsible for running all validation checks and signing off before deliverables are submitted. This report documents the validation process.
 
-**QA Team Member:** [Name]
+**QA Team Member:** Megan Nguyen
 **Date Completed:** [Date]
 
 ---
