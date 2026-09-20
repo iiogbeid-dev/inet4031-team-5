@@ -9,12 +9,11 @@
 **Full Roster:**
 
 | Name | Role (Sprint 1) |
-|------|-----------------|
-Obehi: Scrum Master
-Ajibola: System Admin 
-Megan: QA
-Sadiq: Developer
-Nur: Developer
+|Obehi|Scrum Master|
+|Ajibola| System Admin| 
+|Megan|  QA | 
+| Sadiq|  Developer| 
+| Nur|  Developer| 
 
 ## Role One-Sentence Descriptions
 
