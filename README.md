@@ -15,12 +15,13 @@ observability, security hardening, and backup/recovery.
 
 **Roster:**
 
-| Name |
-Obehi: Scrum Master
-Ajibola: System Admin 
-Megan: QA
-Sadiq: Developer
-Nur: Developer
+| Name | Role (Sprint 1) |
+|------|-----------------|
+|Obehi  |Scrum Master|
+|Ajibola | System Admin |
+|Megan  |QA|
+|Sadiq|  Developer|
+|Nur  |Developer|
 
 See `team-charter.md` for role assignments and the 7-sprint rotation schedule.
 
