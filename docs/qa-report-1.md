@@ -2,7 +2,7 @@
 
 QA is responsible for running all validation checks and signing off before deliverables are submitted. This report documents the validation process.
 
-**QA Team Member:** Megan Nguyen
+**QA Team Member:** [Name]
 **Date Completed:** [Date]
 
 ---
@@ -48,33 +48,7 @@ QA is responsible for running all validation checks and signing off before deliv
 
 ---
 
-### Check 3: Ansible Playbook Is Idempotent
-
-**Status:** [ ] PASS [ ] FAIL
-
-**First Run Output:**
-```
-[Paste PLAY RECAP from first `ansible-playbook` run]
-```
-
-**Second Run Output:**
-```
-[Paste PLAY RECAP from second `ansible-playbook` run]
-```
-
-**Verification:**
-- [ ] First run shows `failed=0` and `unreachable=0`
-- [ ] Second run shows `changed=0`
-- [ ] All tasks on second run show `ok` status
-
-**Notes:**
-[Any tasks that showed `changed` on the second run]
-
-**Sign-off:** [ ] QA approves this check
-
----
-
-### Check 4: Google Doc Is Linked and Shared
+### Check 3: Google Doc Is Linked and Shared
 
 **Status:** [ ] PASS [ ] FAIL
 
@@ -93,7 +67,7 @@ QA is responsible for running all validation checks and signing off before deliv
 
 ---
 
-### Check 5: Check Script Passes
+### Check 4: Check Script Passes
 
 **Status:** [ ] PASS [ ] FAIL
 

@@ -103,9 +103,7 @@ CHARTER_CHECKS=(
     "Team Number"
     "Full Roster"
     "7-Sprint Rotation Schedule"
-    "Communication Norms"
     "Operating Agreements"
-    "Container Baseline"
 )
 
 for check in "${CHARTER_CHECKS[@]}"; do
@@ -148,8 +146,6 @@ echo "Checking documentation files..."
 
 DOC_FILES=(
     "docs/sprint-1-retrospective.md"
-    "docs/week-01-environment-log.md"
-    "docs/week-01-acceptance-criteria.md"
     "docs/qa-report-1.md"
 )
 

@@ -1,4 +1,4 @@
-# INET 4031: Team  5 Repository
+# INET 4031: Team [number] Repository
 
 This is the semester-long repository for our team's INET 4031 Systems Administration
 project: an incident-tracking application built and operated across nine weeks,
@@ -9,19 +9,18 @@ observability, security hardening, and backup/recovery.
 
 ## Team
 
-**Team Name:** Tech Titans
+**Team Name:** [To be filled]
 
-**Team Number:** 5
+**Team Number:** [Enter number provided by professor]
 
 **Roster:**
 
-| Name | Role (Sprint 1) |
-|------|-----------------|
-|Obehi  |Scrum Master|
-|Ajibola | System Admin |
-|Megan  |QA|
-|Sadiq|  Developer|
-|Nur  |Developer|
+| Name |
+|------|
+| |
+| |
+| |
+| |
 
 See `team-charter.md` for role assignments and the 7-sprint rotation schedule.
 
@@ -46,7 +45,7 @@ repo, it will never replace this repository.
 
 ## Team Documents
 
-**Google Doc:** https://docs.google.com/document/d/1E9aBJ_7PBr31woAIbSlTFrklVGIhTFYxEqSZ7CEm2-c/edit?usp=sharing
+**Google Doc:** [Google Doc link will go here]
 
 All sprint reflections, screenshots, and storage-check output are recorded in this
 document as each week's wiki directions require.
