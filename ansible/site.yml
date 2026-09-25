@@ -1,7 +1,13 @@
 ---
-- name: Configure baseline environment
+- name: Baseline environment setup
   hosts: local
   become: true
 
-  roles:
-    - baseline
+  tasks:
+    - name: Ensure baseline packages are installed
+      dnf:
+        name:
+          - git
+          - curl
+          - wget
+        state: present
