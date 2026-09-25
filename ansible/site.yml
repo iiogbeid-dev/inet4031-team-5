@@ -1,0 +1,7 @@
+---
+- name: Configure baseline environment
+  hosts: local
+  become: true
+
+  roles:
+    - baseline
