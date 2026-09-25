@@ -15,12 +15,14 @@ observability, security hardening, and backup/recovery.
 
 **Roster:**
 
-| Name |
-|------|
-| |
-| |
-| |
-| |
+| Name | Role (Sprint 1) |
+|------|-----------------|
+|Ajibola  |
+|Obehi |
+|Megan |
+|Nur|
+|Sadiq|
+
 
 See `team-charter.md` for role assignments and the 7-sprint rotation schedule.
 
