@@ -15,9 +15,9 @@ observability, security hardening, and backup/recovery.
 
 **Roster:**
 
-| Name | Role (Sprint 1) |
-|------|-----------------|
-|Ajibola  |
+| Name | 
+|------|
+|Ajibola|
 |Obehi |
 |Megan |
 |Nur|
