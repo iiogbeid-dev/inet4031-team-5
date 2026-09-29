@@ -1,34 +1,43 @@
-# Week 2: Building Your Three-Tier Application Stack
+# Application Source Code
 
-This directory will contain the Docker Compose configuration and related files for Sprint 1 async work.
+This is the incident tracking application: a Flask API backed by PostgreSQL.
 
-## Week 2 Deliverables
+Provided files:
+- `Dockerfile` - container image definition for the Flask application (runs as a non-root user on port 5000)
+- `app.py` - the Flask API application
+- `seed.py` - synthetic data seeder used in Week 9's performance lab (not run in Week 2)
+- `requirements.txt` - Python package dependencies
 
-You will create the following files in this directory during Week 2:
+Do not modify the provided application code. Your responsibility is to configure how it runs via Docker Compose.
 
-- `docker-compose.yml` - Three-tier application stack (PostgreSQL, Flask, Nginx)
-- `nginx.conf` - Nginx reverse proxy configuration
-- `.env.example` - Template for environment variables (real `.env` goes in `.gitignore`)
-- `README.md` - Documentation for the stack
+## What the app expects at runtime
 
-## What You Will Build
+- `DATABASE_URL` - a full PostgreSQL connection string, e.g.
+  `postgresql://<user>:<password>@db:5432/<database>`. Provide this as an
+  environment variable on the `flask` service in your `docker-compose.yml`;
+  the app reads it from the environment, so no code changes or hardcoded
+  credentials are needed.
 
-The incident tracking application consists of:
-1. **PostgreSQL** (`db`) - Database service
-2. **Flask** (`flask`) - Python API service
-3. **Nginx** (`nginx`) - Reverse proxy service
+The app creates its own `incidents` table on startup if it does not already
+exist (`CREATE TABLE IF NOT EXISTS`) - you do not need to run any migration
+step in Week 2.
 
-All three services will run together in Docker Compose with:
-- Named network for service discovery
-- Named volume for data persistence
-- Health checks for startup ordering
-- Environment variable injection for credentials
+## Endpoints
 
-## Prerequisites
+- `GET /health` - returns `200 {"status": "ok"}` once the app can serve
+  requests. Used by Docker Compose's `service_healthy` condition.
+- `GET /incidents` - returns the most recent 100 incidents as JSON, newest first.
+- `POST /incidents` - creates an incident. Body: `{"title": ..., "status": ..., "description": ...}`
+  (`title` and `status` are required). Returns the created row, including its `id`.
 
-Before starting Week 2, ensure:
-- Week 1 complete (GitHub repo, team container access, Ansible playbook)
-- Docker is running in your team container
-- Application source code is available (path provided by professor)
+## `seed.py` (Week 9 only)
 
-See the full lab directions for detailed steps.
+Week 9's performance lab needs a large `incidents` table to demonstrate a
+sequential-scan query plan. `seed.py` is bundled into this image for that
+purpose - it is not part of the Week 2 deliverable and should not be run
+until Week 9's wiki instructs it. It inserts synthetic rows in batches using
+the same `DATABASE_URL` the app itself uses:
+
+```bash
+docker compose -f week-2/docker-compose.yml exec flask python3 seed.py --rows 50000
+```
