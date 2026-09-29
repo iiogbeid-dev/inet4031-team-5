@@ -11,3 +11,11 @@
           - curl
           - wget
         state: present
+
+name: Deploy application stack
+  hosts: localhost
+  connection: local
+  become: yes
+
+  roles:
+    - app-stack
