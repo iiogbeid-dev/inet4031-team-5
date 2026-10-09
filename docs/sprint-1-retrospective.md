@@ -23,14 +23,10 @@ Use this section to note which team members led which parts of the work:
 | Role | Name | Primary Contribution |
 |---|---|---|
 | Scrum Master |Obehi | Coordinated Sprint 1 tasks, tracked progress, and helped organize team documentation.|
-| System Admin | Ajibola| 
-
-Set up the VM environment, configured Ansible, and helped manage infrastructure. |
+| System Admin | Ajibola| Set up the VM environment, configured Ansible, and helped manage infrastructure. |
 | QA |Megan |Tested the application, checked requirements, and documented validation results. |
-| Developer 1 | Jechuly|
-
-Worked on the Flask application and Docker Compose configuration.|
-| Developer 2+ | Sadiq |Helped configure PostgreSQL, nginx, and the three-tier application |
+| Developer 1 | Jechuly| Worked on the Flask application and Docker Compose configuration.|
+| Developer 2+ | Sadiq | Helped configure PostgreSQL, nginx, and the three-tier application |
 
 ## Notes
 
