@@ -10,8 +10,8 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - name: "8095"
-      port: 8095
+    - name: "80"
+      port: 80
       targetPort: 80
   selector:
     app: nginx

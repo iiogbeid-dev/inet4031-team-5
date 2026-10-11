@@ -23,7 +23,7 @@ spec:
       containers:
         - envFrom:
             - secretRef:
-                name: flask-secret
+                name: flask-credentials
           image: week-2-flask:latest
           imagePullPolicy: IfNotPresent
           readinessProbe:
