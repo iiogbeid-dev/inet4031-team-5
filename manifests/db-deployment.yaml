@@ -13,7 +13,7 @@ spec:
     matchLabels:
       app: db
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       annotations:
@@ -23,18 +23,27 @@ spec:
         app: db
     spec:
       containers:
-        - env:
-            - name: POSTGRES_DB
-              value: statustracker
-            - name: POSTGRES_PASSWORD
-              value: changeme
-            - name: POSTGRES_USER
-              value: appuser
+        - envFrom:
+            - secretRef:
+                name: postgres-secret
           image: postgres:15-alpine
+          readinessProbe:
+            exec:
+              command:
+                - sh
+                - -c
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"
+            initialDelaySeconds: 5
+            failureThreshold: 5
+            periodSeconds: 5
+            timeoutSeconds: 5
           livenessProbe:
             exec:
               command:
-                - pg_isready -U "${POSTGRES_USER}" -d "${POSTGRES_DB}"
+                - sh
+                - -c
+                - pg_isready -U "$POSTGRES_USER" -d "$POSTGRES_DB"
+            initialDelaySeconds: 15
             failureThreshold: 5
             periodSeconds: 10
             timeoutSeconds: 5
