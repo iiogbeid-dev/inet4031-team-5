@@ -19,3 +19,20 @@ name: Deploy application stack
 
   roles:
     - app-stack
+
+    - name: Set up k3d cluster
+  hosts: localhost
+  connection: local
+  become: yes
+  environment:
+    PATH: "/usr/local/bin:{{ ansible_env.PATH }}"
+  roles:
+    - k3d-setup
+
+    # - name: Deploy application stack
+#   hosts: localhost
+#   connection: local
+#   become: yes
+
+#   roles:
+#     - app-stack
