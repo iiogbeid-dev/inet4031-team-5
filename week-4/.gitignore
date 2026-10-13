@@ -22,3 +22,9 @@ venv/
 
 # Ansible
 *.retry
+echo "infrastructure/terraform.tfstate" >> .gitignore
+echo "infrastructure/terraform.tfstate.backup" >> .gitignore
+echo "infrastructure/.terraform/" >> .gitignore
+git add .gitignore
+git commit -m "chore: ignore OpenTofu state and working-directory files"
+git push
