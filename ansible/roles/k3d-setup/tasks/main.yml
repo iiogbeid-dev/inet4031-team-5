@@ -15,5 +15,5 @@
   changed_when: false
 
 - name: Create k3d cluster if not present
-  command: k3d cluster create <team-5> --agents 2 --port "8095:80@loadbalancer" --k3s-arg "--disable=traefik@server:0" --subnet 100.97.5.0/24
+  command: k3d cluster create team-5 --agents 2 --port "8095:80@loadbalancer" --k3s-arg "--disable=traefik@server:0" --subnet 100.97.5.0/24
   when: "'myapp' not in cluster_list.stdout"
