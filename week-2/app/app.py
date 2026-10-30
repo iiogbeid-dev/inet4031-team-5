@@ -8,8 +8,6 @@ from prometheus_flask_exporter import PrometheusMetrics
 app = Flask(__name__)
 metrics = PrometheusMetrics(app)
 
-app = Flask(__name__)
-
 DATABASE_URL = os.environ["DATABASE_URL"]
 
 SCHEMA = """
