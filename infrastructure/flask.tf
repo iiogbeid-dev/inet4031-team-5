@@ -68,6 +68,12 @@ resource "kubernetes_service" "flask" {
   metadata {
     name      = "flask"
     namespace = "default"
+
+    annotations = {
+      "prometheus.io/scrape" = "true"
+      "prometheus.io/port"   = "5000"
+      "prometheus.io/path"   = "/metrics"
+    }
   }
 
   spec {
