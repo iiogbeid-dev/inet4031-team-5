@@ -20,8 +20,8 @@ observability, security hardening, and backup/recovery.
 |Ajibola|
 |Obehi |
 |Megan |
-|Nur|
-|Sadiq|
+|Jechuly|
+
 
 
 See `team-charter.md` for role assignments and the 7-sprint rotation schedule.
