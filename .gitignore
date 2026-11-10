@@ -2,3 +2,6 @@ infrastructure/terraform.tfstate
 infrastructure/terraform.tfstate.backup
 infrastructure/.terraform/
 week-8/.env.backup
+MINIO_ROOT_USER=backup
+MINIO_ROOT_PASSWORD=GMn2Ksm6nl4crzMRQgOmC/Vui92Ubnad
+RESTIC_PASSWORD=frhphHSOP7nFTaxBkgMHftu5hm6sJKUH
