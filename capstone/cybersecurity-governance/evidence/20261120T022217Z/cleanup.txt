@@ -1,0 +1,6 @@
+pod "cyber-evidence-default-3530747" deleted from default namespace
+E1119 20:22:51.546619 3532873 reflector.go:204] "Failed to watch" err="context deadline exceeded" reflector="k8s.io/client-go/tools/watch/informerwatcher.go:162" type="*unstructured.Unstructured"
+error: timed out waiting for the condition on pods/cyber-evidence-default-3530747
+pod "cyber-evidence-other-3530747" deleted from cyber-evidence-3530747 namespace
+error: timed out waiting for the condition on pods/cyber-evidence-other-3530747
+namespace "cyber-evidence-3530747" deleted

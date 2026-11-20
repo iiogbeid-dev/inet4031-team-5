@@ -11,6 +11,7 @@ TIME_BUDGET=240
 FAILURES=0
 TEST_NAMESPACE="cyber-evidence-$$"
 TEMP_PODS=()
+CLEANED=false
 
 if [[ -e "$OUT" ]]; then
   echo "Evidence directory already exists: $OUT" >&2
@@ -19,11 +20,45 @@ fi
 mkdir -p "$OUT"
 
 cleanup() {
+  local pod_ref namespace pod cleanup_failures=0 remaining
+  [[ "$CLEANED" == true ]] && return
   for pod_ref in "${TEMP_PODS[@]}"; do
-    kubectl delete pod "$pod_ref" --ignore-not-found --wait=false >/dev/null 2>&1 || true
+    IFS='/' read -r namespace pod <<<"$pod_ref"
+    if ! kubectl delete pod "$pod" -n "$namespace" --ignore-not-found \
+      --wait=false >>"$OUT/cleanup.txt" 2>&1; then
+      cleanup_failures=$((cleanup_failures + 1))
+      continue
+    fi
+    remaining=10
+    while (( remaining > 0 )); do
+      if ! kubectl get pod "$pod" -n "$namespace" --ignore-not-found \
+        -o name >>"$OUT/cleanup.txt" 2>&1; then
+        cleanup_failures=$((cleanup_failures + 1))
+        break
+      fi
+      if ! kubectl get pod "$pod" -n "$namespace" --ignore-not-found \
+        -o name 2>/dev/null | grep -q .; then
+        break
+      fi
+      sleep 1
+      remaining=$((remaining - 1))
+    done
+    if (( remaining == 0 )); then
+      printf 'Timed out waiting for pod %s/%s deletion.\n' "$namespace" "$pod" \
+        >>"$OUT/cleanup.txt"
+      cleanup_failures=$((cleanup_failures + 1))
+    fi
   done
-  kubectl delete namespace "$TEST_NAMESPACE" --ignore-not-found --wait=false \
-    >/dev/null 2>&1 || true
+  if ! kubectl delete namespace "$TEST_NAMESPACE" --ignore-not-found \
+    --wait=false >>"$OUT/cleanup.txt" 2>&1; then
+    cleanup_failures=$((cleanup_failures + 1))
+  fi
+  if (( cleanup_failures > 0 )); then
+    printf 'Temporary-resource cleanup failed; inspect cleanup.txt.\n' \
+      >>"$OUT/summary.txt"
+    FAILURES=$((FAILURES + cleanup_failures))
+  fi
+  CLEANED=true
 }
 trap cleanup EXIT
 
@@ -252,16 +287,38 @@ probe_network_policy() {
   local pod="$2"
   local target="db.default.svc.cluster.local"
   local report="$3"
+  local test_node
 
   {
     printf 'Test: pod in namespace %s must not connect to %s:5432\n' \
       "$namespace" "$target"
-    printf 'Expected: DNS resolves; TCP connection is blocked by NetworkPolicy.\n'
+    printf 'Expected: Flask positive control succeeds; DNS resolves; TCP connection is blocked.\n'
   } >"$report"
 
+  test_node="$(kubectl get pods -n default -l app=flask \
+    -o 'jsonpath={.items[0].spec.nodeName}' 2>/dev/null || true)"
+  if [[ -z "$test_node" ]]; then
+    printf 'RESULT: ERROR - no running Flask pod available as an image/node reference.\n' \
+      >>"$report"
+    FAILURES=$((FAILURES + 1))
+    return
+  fi
+
+  if ! kubectl exec deployment/flask -n default -- python3 -c \
+    'import socket; socket.create_connection(("db.default.svc.cluster.local",5432),timeout=3).close()' \
+    >>"$report" 2>&1; then
+    printf 'RESULT: ERROR - allowed Flask-to-database positive control failed.\n' \
+      >>"$report"
+    FAILURES=$((FAILURES + 1))
+    return
+  fi
+  printf 'Positive control: Flask successfully connected to the database.\n' \
+    >>"$report"
+
   local overrides
-  overrides="$(printf '{"apiVersion":"v1","spec":{"containers":[{"name":"%s","image":"busybox:1.36","command":["sleep"],"args":["180"],"resources":{"requests":{"cpu":"10m","memory":"16Mi"},"limits":{"cpu":"100m","memory":"32Mi"}}}]}}' "$pod")"
-  if ! kubectl run "$pod" -n "$namespace" --image=busybox:1.36 \
+  overrides="$(printf '{"apiVersion":"v1","spec":{"nodeName":"%s","containers":[{"name":"%s","image":"week-2-flask:latest","imagePullPolicy":"IfNotPresent","command":["python3","-c"],"args":["import time; time.sleep(180)"],"resources":{"requests":{"cpu":"10m","memory":"16Mi"},"limits":{"cpu":"100m","memory":"32Mi"}},"securityContext":{"runAsNonRoot":true,"runAsUser":1000,"allowPrivilegeEscalation":false,"readOnlyRootFilesystem":true,"capabilities":{"drop":["ALL"]}}}]}}' "$test_node" "$pod")"
+  if ! kubectl run "$pod" -n "$namespace" --image=week-2-flask:latest \
+    --image-pull-policy=IfNotPresent \
     --restart=Never --overrides="$overrides" \
     >>"$report" 2>&1; then
     printf 'RESULT: ERROR - unable to create the temporary test pod.\n' >>"$report"
@@ -278,7 +335,8 @@ probe_network_policy() {
     return
   fi
 
-  if ! kubectl exec "$pod" -n "$namespace" -- nslookup "$target" \
+  if ! kubectl exec "$pod" -n "$namespace" -- python3 -c \
+    "import socket; socket.gethostbyname('$target'); print('DNS resolved')" \
     >>"$report" 2>&1; then
     printf 'RESULT: ERROR - DNS failed; not counted as a NetworkPolicy block.\n' \
       >>"$report"
@@ -286,13 +344,29 @@ probe_network_policy() {
     return
   fi
 
-  if kubectl exec "$pod" -n "$namespace" -- nc -z -w 3 "$target" 5432 \
+  local probe
+  probe='import socket, sys
+target = "db.default.svc.cluster.local"
+try:
+    socket.create_connection((target, 5432), timeout=3).close()
+except OSError as exc:
+    print(f"TCP blocked: {type(exc).__name__}")
+else:
+    print("TCP unexpectedly connected")
+    sys.exit(1)'
+  if kubectl exec "$pod" -n "$namespace" -- python3 -c "$probe" \
     >>"$report" 2>&1; then
-    printf 'RESULT: FAIL - TCP connection unexpectedly succeeded.\n' >>"$report"
-    FAILURES=$((FAILURES + 1))
+    if grep -q 'TCP blocked:' "$report"; then
+      printf 'RESULT: PASS - TCP connection was blocked after DNS and positive-control checks.\n' \
+        >>"$report"
+    else
+      printf 'RESULT: FAIL - TCP connection unexpectedly succeeded.\n' >>"$report"
+      FAILURES=$((FAILURES + 1))
+    fi
   else
-    printf 'RESULT: PASS - TCP connection was blocked after DNS succeeded.\n' \
+    printf 'RESULT: ERROR - TCP probe failed to execute; result not counted as blocked.\n' \
       >>"$report"
+    FAILURES=$((FAILURES + 1))
   fi
 }
 
@@ -312,6 +386,9 @@ else
 fi
 cat "$OUT/netpol-default-namespace.txt" "$OUT/netpol-other-namespace.txt" \
   >>"$OUT/netpol-tests.txt"
+
+cleanup
+trap - EXIT
 
 ELAPSED=$((SECONDS - START_SECONDS))
 {

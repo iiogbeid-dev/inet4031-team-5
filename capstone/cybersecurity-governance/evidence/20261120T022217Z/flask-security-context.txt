@@ -1,0 +1,4 @@
+$ kubectl get deployment flask -n default -o jsonpath=\{.spec.template.spec.containers\[0\].securityContext\}\{\"\\n\"\}
+{"allowPrivilegeEscalation":false,"capabilities":{"drop":["ALL"]},"readOnlyRootFilesystem":true,"runAsNonRoot":true,"runAsUser":1000}
+
+Exit code: 0

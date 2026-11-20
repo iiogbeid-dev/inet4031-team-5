@@ -1,0 +1,8 @@
+Test: pod in namespace cyber-evidence-3530747 must not connect to db.default.svc.cluster.local:5432
+Expected: Flask positive control succeeds; DNS resolves; TCP connection is blocked.
+Positive control: Flask successfully connected to the database.
+pod/cyber-evidence-other-3530747 created
+pod/cyber-evidence-other-3530747 condition met
+DNS resolved
+TCP blocked: ConnectionRefusedError
+RESULT: PASS - TCP connection was blocked after DNS and positive-control checks.
