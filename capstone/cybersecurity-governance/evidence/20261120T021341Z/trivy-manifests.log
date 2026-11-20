@@ -1,0 +1,2 @@
+$ trivy config --format json --output /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/trivy-manifests.json --timeout 90s /home/iiogbeid/inet4031-team-5/manifests
+Exit code: 127

@@ -1,0 +1,18 @@
+id,area,control,test,expected,status,evidence
+C-01,Kubernetes workload,Flask runs as a non-root identity,Inspect the live Flask container securityContext,runAsNonRoot true and runAsUser 1000,Pass,evidence/README.md
+C-02,Kubernetes workload,Flask blocks privilege escalation,Inspect the live Flask container securityContext,allowPrivilegeEscalation false,Pass,evidence/README.md
+C-03,Kubernetes workload,Flask root filesystem is read-only,Inspect the live Flask container securityContext,readOnlyRootFilesystem true,Pass,evidence/README.md
+C-04,Kubernetes workload,Flask drops Linux capabilities,Inspect the live Flask container securityContext,drop ALL,Pass,evidence/README.md
+C-05,Image,Flask image has no untriaged HIGH or CRITICAL vulnerabilities,Scan the recorded baseline and live Flask image with Trivy,Before/after reports exist and remaining findings are triaged,Fail,evidence/README.md
+C-06,RBAC,Flask uses the dedicated flask-app ServiceAccount,Inspect the live Deployment serviceAccountName,serviceAccountName is flask-app,Pass,evidence/README.md
+C-07,RBAC,Flask ServiceAccount token is not automatically mounted,Inspect ServiceAccount configuration,automountServiceAccountToken is false,Pass,evidence/README.md
+C-08,RBAC,Flask can read only the required ConfigMaps,Run can-i get/list configmaps as flask-app,Expected get/list allowed only as granted,Fail,evidence/README.md
+C-09,RBAC,Flask cannot read Kubernetes Secrets,Run can-i get secrets as flask-app,Expected no,Fail,evidence/README.md
+C-10,Network,Default-deny ingress policy is present,Inspect default namespace NetworkPolicies,default-deny-ingress selects all pods,Pass,evidence/README.md
+C-11,Network,Non-Flask pod cannot connect to database,Run a resource-limited temporary pod in default and probe db TCP 5432,Name resolution succeeds and TCP is blocked,Fail,evidence/README.md
+C-12,Network,Pod in another namespace cannot connect to database,Run a temporary test pod in an isolated namespace and probe db TCP 5432,Name resolution succeeds and TCP is blocked,Fail,evidence/README.md
+C-13,Repository,Full Git history has no unresolved secrets,Run gitleaks on full repository history with redaction,No unresolved findings and redacted report is saved,Fail,evidence/README.md
+C-14,Manifest,Tracked Kubernetes manifests are scanned,Run Trivy config and Checkov against manifests,Reports are saved and findings triaged,Fail,evidence/README.md
+C-15,Process,Security changes are reviewed before default-branch deployment,Inspect workflow and repository branch-protection evidence,Pull-request checks and enforced protection are evidenced,Fail,evidence/README.md
+C-16,Governance,Three short policies and a risk register are maintained,Check policy files and risk register,Three policies and at least eight scored risks exist,Pass,evidence/README.md
+C-17,Evidence,Collector produces a new timestamped evidence directory,Run collect-evidence.sh and inspect its output,New directory is created in under five minutes,Fail,evidence/README.md

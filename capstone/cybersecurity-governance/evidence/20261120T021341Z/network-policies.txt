@@ -1,0 +1,9 @@
+$ kubectl get networkpolicy -n default -o wide
+NAME                        POD-SELECTOR   AGE
+allow-flask-to-postgres     app=db         21d
+allow-ingress-to-nginx      app=nginx      21d
+allow-nginx-to-flask        app=flask      21d
+allow-prometheus-to-flask   app=flask      13d
+default-deny-ingress        <none>         21d
+
+Exit code: 0

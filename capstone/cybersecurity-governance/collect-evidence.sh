@@ -187,9 +187,8 @@ fi
 
 CHECKOV_BIN="${CHECKOV_BIN:-$HOME/cybersecurity-governance-venv/bin/checkov}"
 if [[ -x "$CHECKOV_BIN" ]]; then
-  run_scanner "Kubernetes manifest policy scan" "$OUT/checkov-manifests.json" \
-    "$CHECKOV_BIN" "$CHECKOV_BIN" -d "$REPO_ROOT/manifests" \
-    --framework kubernetes --output json
+  run_capture "Kubernetes manifest policy scan" "$OUT/checkov-manifests.txt" \
+    "$CHECKOV_BIN" -d "$REPO_ROOT/manifests" --framework kubernetes
 else
   printf 'NOT RUN: Checkov not found at %s; install it in the course virtualenv.\n' \
     "$CHECKOV_BIN" >"$OUT/checkov-manifests.NOT-RUN.txt"

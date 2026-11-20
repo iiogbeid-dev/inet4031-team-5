@@ -1,0 +1,7 @@
+$ kubectl get deployments flask db nginx -o wide
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                SELECTOR
+flask   0/1     1            0           38d   flask        week-2-flask:latest   app=flask
+db      1/1     1            1           38d   db           postgres:15-alpine    app=db
+nginx   0/1     1            0           38d   nginx        nginx:alpine          app=nginx
+
+Exit code: 0

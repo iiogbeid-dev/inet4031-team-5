@@ -1,0 +1,13 @@
+NetworkPolicy negative tests; only temporary pods created by this script are used.
+The temporary test namespace is cyber-evidence-3491193.
+namespace/cyber-evidence-3491193 created
+Test: pod in namespace default must not connect to db.default.svc.cluster.local:5432
+Expected: DNS resolves; TCP connection is blocked by NetworkPolicy.
+error: unknown flag: --requests
+See 'kubectl run --help' for usage.
+RESULT: ERROR - unable to create the temporary test pod.
+Test: pod in namespace cyber-evidence-3491193 must not connect to db.default.svc.cluster.local:5432
+Expected: DNS resolves; TCP connection is blocked by NetworkPolicy.
+error: unknown flag: --requests
+See 'kubectl run --help' for usage.
+RESULT: ERROR - unable to create the temporary test pod.

@@ -1,0 +1,9 @@
+identity	verb	resource	expected	actual	result
+system:serviceaccount:default:flask-app	get	configmaps	yes	yes	PASS
+system:serviceaccount:default:flask-app	list	configmaps	yes	yes	PASS
+system:serviceaccount:default:flask-app	get	secrets	no	no	FAIL
+system:serviceaccount:default:flask-app	get	pods	no	no	FAIL
+system:serviceaccount:default:flask-app	create	configmaps	no	no	FAIL
+system:serviceaccount:default:default	get	configmaps	no	no	FAIL
+system:serviceaccount:default:default	get	secrets	no	no	FAIL
+system:serviceaccount:default:default	get	pods	no	no	FAIL

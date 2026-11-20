@@ -1,0 +1,1 @@
+NOT RUN: set CYBER_IMAGE_BEFORE to the recorded pre-remediation image tag.

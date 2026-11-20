@@ -1,0 +1,9 @@
+Repository: /home/iiogbeid/inet4031-team-5
+e3dde062a3c2f6864ef1cf4ece049721734c3206
+ M capstone/cybersecurity-governance/collect-evidence.sh
+?? capstone/cybersecurity-governance/RUNBOOK.md
+?? capstone/cybersecurity-governance/controls.csv
+?? capstone/cybersecurity-governance/evidence/
+?? capstone/cybersecurity-governance/risk-register.md
+k3d-team-5
+2026-11-20T02:13:41+00:00

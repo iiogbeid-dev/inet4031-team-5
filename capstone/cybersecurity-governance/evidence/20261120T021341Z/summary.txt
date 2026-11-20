@@ -1,0 +1,13 @@
+Evidence run: 20261120T021341Z
+Cluster nodes: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/cluster-nodes.txt
+Application deployments: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/application-deployments.txt
+NetworkPolicies: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/network-policies.txt
+Flask security context: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/flask-security-context.txt
+Live-image vulnerability scan: scanner not found; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/trivy-image-after.NOT-RUN.txt
+Manifest configuration scan: scanner not found; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/trivy-manifests.NOT-RUN.txt
+Full-history gitleaks: scanner not found
+
+Elapsed seconds: 3
+Failure/not-run count: 14
+Five-minute target: met for this collector run.
+Evidence directory: /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z

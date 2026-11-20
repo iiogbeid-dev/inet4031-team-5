@@ -1,0 +1,1 @@
+NOT RUN: gitleaks is not installed; no secrets scan result is claimed.

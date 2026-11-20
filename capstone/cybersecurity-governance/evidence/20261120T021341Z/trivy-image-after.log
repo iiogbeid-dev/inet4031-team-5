@@ -1,0 +1,2 @@
+$ trivy image --scanners vuln --format json --output /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021341Z/trivy-image-after.json --timeout 90s --exit-code 0 week-2-flask:latest
+Exit code: 127
