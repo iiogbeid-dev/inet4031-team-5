@@ -1,0 +1,25 @@
+pod "cyber-evidence-default-3590277" deleted from default namespace
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+pod/cyber-evidence-default-3590277
+Timed out waiting for pod default/cyber-evidence-default-3590277 deletion.
+pod "cyber-evidence-other-3590277" deleted from cyber-evidence-3590277 namespace
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+pod/cyber-evidence-other-3590277
+Timed out waiting for pod cyber-evidence-3590277/cyber-evidence-other-3590277 deletion.
+namespace "cyber-evidence-3590277" deleted

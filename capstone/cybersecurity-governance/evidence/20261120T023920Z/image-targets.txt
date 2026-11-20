@@ -1,0 +1,3 @@
+Live Flask image: week-2-flask:cybersecurity-after-20261119
+Note: after image is an explicitly supplied candidate; it is not asserted to be deployed.
+Before image: week-2-flask:latest

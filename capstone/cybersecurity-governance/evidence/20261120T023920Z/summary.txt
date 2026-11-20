@@ -1,0 +1,18 @@
+Evidence run: 20261120T023920Z
+Cluster nodes: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/cluster-nodes.txt
+Application deployments: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/application-deployments.txt
+NetworkPolicies: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/network-policies.txt
+Flask security context: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/flask-security-context.txt
+Flask ServiceAccount assignment: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/flask-serviceaccount-assignment.txt
+Flask ServiceAccount configuration: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/flask-serviceaccount-config.txt
+Before-image vulnerability scan: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/trivy-image-before.json
+Live-image vulnerability scan: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/trivy-image-after.json
+Manifest configuration scan: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/trivy-manifests.json
+Full-history gitleaks: findings or command error (exit 126); inspect the redacted report and log
+Kubernetes manifest policy scan: command failed (exit 1); see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/checkov-manifests.txt
+Temporary-resource cleanup failed; inspect cleanup.txt.
+
+Elapsed seconds: 47
+Failure/not-run count: 5
+Five-minute target: met for this collector run.
+Evidence directory: /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z

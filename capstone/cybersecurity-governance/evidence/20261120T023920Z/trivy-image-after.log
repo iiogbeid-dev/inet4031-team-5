@@ -1,0 +1,10 @@
+$ trivy image --scanners vuln --format json --output /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T023920Z/trivy-image-after.json --timeout 90s --exit-code 0 week-2-flask:cybersecurity-after-20261119
+2026-11-19T20:39:21-06:00	INFO	[vuln] Vulnerability scanning is enabled
+2026-11-19T20:39:26-06:00	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+2026-11-19T20:39:26-06:00	INFO	Detected OS	family="debian" version="13.7"
+2026-11-19T20:39:26-06:00	INFO	[debian] Detecting vulnerabilities...	os_version="13" pkg_num=109
+2026-11-19T20:39:26-06:00	INFO	Number of language-specific files	num=1
+2026-11-19T20:39:26-06:00	INFO	[python-pkg] Detecting vulnerabilities...
+2026-11-19T20:39:26-06:00	WARN	Using severities from other vendors for some vulnerabilities. Read https://trivy.dev/docs/v0.76/guide/scanner/vulnerability#severity-selection for details.
+
+Exit code: 0

@@ -175,12 +175,17 @@ run_capture "Flask ServiceAccount configuration" "$OUT/flask-serviceaccount-conf
   kubectl get serviceaccount flask-app -n default \
   -o 'jsonpath={.automountServiceAccountToken}{"\n"}'
 
-IMAGE_AFTER="$(kubectl get deployment flask -n default \
+IMAGE_LIVE="$(kubectl get deployment flask -n default \
   -o 'jsonpath={.spec.template.spec.containers[0].image}' 2>/dev/null || true)"
-if [[ -z "$IMAGE_AFTER" ]]; then
-  IMAGE_AFTER="week-2-flask:latest"
+if [[ -z "$IMAGE_LIVE" ]]; then
+  IMAGE_LIVE="week-2-flask:latest"
 fi
+IMAGE_AFTER="${CYBER_IMAGE_AFTER:-$IMAGE_LIVE}"
 printf 'Live Flask image: %s\n' "$IMAGE_AFTER" >"$OUT/image-targets.txt"
+if [[ "$IMAGE_AFTER" != "$IMAGE_LIVE" ]]; then
+  printf 'Note: after image is an explicitly supplied candidate; it is not asserted to be deployed.\n' \
+    >>"$OUT/image-targets.txt"
+fi
 
 if [[ -n "${CYBER_IMAGE_BEFORE:-}" ]]; then
   printf 'Before image: %s\n' "$CYBER_IMAGE_BEFORE" >>"$OUT/image-targets.txt"
