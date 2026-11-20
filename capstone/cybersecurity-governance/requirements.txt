@@ -1,0 +1,4 @@
+# No Python packages are imported by collect-evidence.sh.
+# Checkov is an optional CLI dependency for this shell-based collector. Install
+# it in the course virtualenv using the track README, then record the resolved
+# package versions with: pip freeze > requirements.txt

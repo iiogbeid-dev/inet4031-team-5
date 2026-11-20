@@ -1,0 +1,23 @@
+Cybersecurity Governance Track - tool versions observed during authoring
+Date: 2026-11-19
+Environment: Team 5 RHEL Shared VM workspace / k3d cluster
+
+Installed and queried:
+  kubectl client: v1.35.5
+  k3d: v5.9.0
+  embedded k3s default: v1.35.5-k3s1
+  Docker: 29.9.3, build 5457199
+  jq: jq-1.6
+  Python: 3.9.25
+  Git: 2.52.0
+  Ansible: core 2.14.18
+  OpenTofu: v1.13.9, linux_amd64
+  Kubernetes cluster: v1.35.5+k3s1 (3 nodes Ready when checked)
+
+Not installed in this authoring workspace; no version or scan result claimed:
+  Trivy, gitleaks, kube-score, Checkov, Python pip/venv support
+
+The course Shared VM setup is expected to provide the scanners. Run their
+version commands from the track README on the presentation/rebuild VM and
+replace this list with the versions actually used for the final evidence run.
+This file deliberately does not infer a version from a package manifest.

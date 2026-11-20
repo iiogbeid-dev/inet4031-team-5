@@ -60,6 +60,46 @@ document as each week's wiki directions require.
    all Week 1 requirements are met.
 4. Reference `docs/qa-report-1.md` for the sign-off checklist.
 
+## How to Run This: Cybersecurity Governance Track
+
+The final-sprint governance materials are in
+[`capstone/cybersecurity-governance/`](capstone/cybersecurity-governance/).
+These instructions target Team 5's Shared VM (RHEL) and use only this team's
+cluster and ports. Do not use them against another team's cluster.
+
+1. Clone this repository and verify `git`, `docker`, `k3d`, `kubectl`, `jq`,
+   Trivy, gitleaks, kube-score, and the Checkov virtualenv are available. See
+   [`TOOL-VERSIONS.txt`](capstone/cybersecurity-governance/TOOL-VERSIONS.txt)
+   for the versions recorded during authoring. Never install packages system-wide
+   on the Shared VM.
+2. If the `team-5` cluster is not already present, create it (no sudo):
+
+   ```bash
+   k3d cluster create team-5 --agents 2 --port "8095:80@loadbalancer" \
+     --k3s-arg "--disable=traefik@server:0" --subnet 100.97.5.0/24
+   ```
+
+3. Build and import the Flask image, then apply the committed app manifests:
+
+   ```bash
+   docker build --network host -t week-2-flask:latest week-2/app
+   k3d image import week-2-flask:latest -c team-5
+   kubectl apply -f manifests/
+   kubectl rollout status deployment/flask --timeout=120s
+   kubectl rollout status deployment/db --timeout=120s
+   kubectl rollout status deployment/nginx --timeout=120s
+   ```
+
+   The manifest secrets contain lab credentials. This stack is for the course
+   environment only; do not connect it to production data or reuse those
+   credentials. Do not run Ansible or OpenTofu on the Shared VM.
+4. Follow
+   [`capstone/cybersecurity-governance/RUNBOOK.md`](capstone/cybersecurity-governance/RUNBOOK.md)
+   to check the app, collect evidence, and recover from common failures. The
+   evidence collector writes a new timestamped directory under
+   `capstone/cybersecurity-governance/evidence/`; it exits non-zero if required
+   scanners, cluster checks, or the before-image input are missing.
+
 ## Questions or Issues
 
 1. Check the troubleshooting notes in the wiki.
