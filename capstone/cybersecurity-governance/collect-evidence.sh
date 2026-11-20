@@ -133,6 +133,12 @@ run_capture "NetworkPolicies" "$OUT/network-policies.txt" \
 run_capture "Flask security context" "$OUT/flask-security-context.txt" \
   kubectl get deployment flask -n default \
   -o 'jsonpath={.spec.template.spec.containers[0].securityContext}{"\n"}'
+run_capture "Flask ServiceAccount assignment" "$OUT/flask-serviceaccount-assignment.txt" \
+  kubectl get deployment flask -n default \
+  -o 'jsonpath={.spec.template.spec.serviceAccountName}{"\n"}'
+run_capture "Flask ServiceAccount configuration" "$OUT/flask-serviceaccount-config.txt" \
+  kubectl get serviceaccount flask-app -n default \
+  -o 'jsonpath={.automountServiceAccountToken}{"\n"}'
 
 IMAGE_AFTER="$(kubectl get deployment flask -n default \
   -o 'jsonpath={.spec.template.spec.containers[0].image}' 2>/dev/null || true)"

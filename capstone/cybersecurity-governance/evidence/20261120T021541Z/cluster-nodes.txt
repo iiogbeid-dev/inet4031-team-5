@@ -1,0 +1,7 @@
+$ kubectl get nodes -o wide
+NAME                  STATUS   ROLES           AGE   VERSION        INTERNAL-IP   EXTERNAL-IP   OS-IMAGE           KERNEL-VERSION                 CONTAINER-RUNTIME
+k3d-team-5-agent-0    Ready    <none>          38d   v1.35.5+k3s1   100.97.5.2    <none>        K3s v1.35.5+k3s1   5.14.0-687.64.1.el9_8.x86_64   containerd://2.2.3-k3s1
+k3d-team-5-agent-1    Ready    <none>          38d   v1.35.5+k3s1   100.97.5.5    <none>        K3s v1.35.5+k3s1   5.14.0-687.64.1.el9_8.x86_64   containerd://2.2.3-k3s1
+k3d-team-5-server-0   Ready    control-plane   38d   v1.35.5+k3s1   100.97.5.3    <none>        K3s v1.35.5+k3s1   5.14.0-687.64.1.el9_8.x86_64   containerd://2.2.3-k3s1
+
+Exit code: 0
