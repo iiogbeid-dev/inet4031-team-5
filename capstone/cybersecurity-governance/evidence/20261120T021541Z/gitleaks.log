@@ -1,0 +1,2 @@
+./capstone/cybersecurity-governance/collect-evidence.sh: line 174: /usr/local/bin/gitleaks: Permission denied
+Exit code: 126

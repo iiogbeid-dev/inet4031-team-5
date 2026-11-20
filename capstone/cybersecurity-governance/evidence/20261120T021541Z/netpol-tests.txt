@@ -1,0 +1,2 @@
+NetworkPolicy negative tests; only temporary pods created by this script are used.
+The temporary test namespace is cyber-evidence-3511578.

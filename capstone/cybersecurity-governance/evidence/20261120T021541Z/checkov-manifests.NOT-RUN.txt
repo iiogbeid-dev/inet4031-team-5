@@ -1,0 +1,1 @@
+NOT RUN: Checkov not found at /home/iiogbeid/cybersecurity-governance-venv/bin/checkov; install it in the course virtualenv.

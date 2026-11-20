@@ -1,0 +1,3 @@
+Test: pod in namespace default must not connect to db.default.svc.cluster.local:5432
+Expected: DNS resolves; TCP connection is blocked by NetworkPolicy.
+pod/cyber-evidence-default-3511578 created

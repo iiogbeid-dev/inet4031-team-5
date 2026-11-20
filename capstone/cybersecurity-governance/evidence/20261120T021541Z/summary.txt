@@ -6,3 +6,5 @@ Flask security context: completed; see /home/iiogbeid/inet4031-team-5/capstone/c
 Flask ServiceAccount assignment: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021541Z/flask-serviceaccount-assignment.txt
 Flask ServiceAccount configuration: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021541Z/flask-serviceaccount-config.txt
 Live-image vulnerability scan: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021541Z/trivy-image-after.json
+Manifest configuration scan: completed; see /home/iiogbeid/inet4031-team-5/capstone/cybersecurity-governance/evidence/20261120T021541Z/trivy-manifests.json
+Full-history gitleaks: findings or command error (exit 126); inspect the redacted report and log

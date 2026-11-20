@@ -2,3 +2,6 @@ $ trivy config --format json --output /home/iiogbeid/inet4031-team-5/capstone/cy
 2026-11-19T20:15:54-06:00	INFO	[misconfig] Misconfiguration scanning is enabled
 2026-11-19T20:15:54-06:00	INFO	[checks-client] Need to update the checks bundle
 2026-11-19T20:15:54-06:00	INFO	[checks-client] Downloading the checks bundle...
+234.57 KiB / 234.57 KiB [------------------------------------------------------] 100.00% ? p/s 200ms2026-11-19T20:15:57-06:00	INFO	Detected config files	num=16
+
+Exit code: 0
