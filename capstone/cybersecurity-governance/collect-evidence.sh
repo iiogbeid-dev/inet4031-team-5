@@ -230,7 +230,7 @@ fi
     actual="$(kubectl auth can-i "$verb" "$resource" --as="$identity" \
       -n default 2>&1)"
     rc=$?
-    if (( rc == 0 )) && [[ "$actual" == "$expected" ]]; then
+    if (( rc <= 1 )) && [[ "$actual" == "$expected" ]]; then
       result="PASS"
     else
       result="FAIL"
@@ -253,9 +253,10 @@ probe_network_policy() {
     printf 'Expected: DNS resolves; TCP connection is blocked by NetworkPolicy.\n'
   } >"$report"
 
+  local overrides
+  overrides="$(printf '{"apiVersion":"v1","spec":{"containers":[{"name":"%s","image":"busybox:1.36","command":["sleep"],"args":["180"],"resources":{"requests":{"cpu":"10m","memory":"16Mi"},"limits":{"cpu":"100m","memory":"32Mi"}}}]}}' "$pod")"
   if ! kubectl run "$pod" -n "$namespace" --image=busybox:1.36 \
-    --restart=Never --requests=cpu=10m,memory=16Mi \
-    --limits=cpu=100m,memory=32Mi --command -- sleep 180 \
+    --restart=Never --overrides="$overrides" \
     >>"$report" 2>&1; then
     printf 'RESULT: ERROR - unable to create the temporary test pod.\n' >>"$report"
     FAILURES=$((FAILURES + 1))
