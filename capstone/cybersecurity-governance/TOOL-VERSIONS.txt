@@ -1,23 +1,41 @@
-Cybersecurity Governance Track - tool versions observed during authoring
-Date: 2026-11-19
-Environment: Team 5 RHEL Shared VM workspace / k3d cluster
+Tool versions - Team 5 shared RHEL VM (caps-inet4031-dev-app-02) - verified by Sadiq - Sat Nov 21 08:31:07 PM CST 2026
+All scanners installed and runnable as a student user at this time.
+History: evidence/tool-versions-20261119-2025.txt (trivy only; gitleaks permission denied; kube-score missing)
 
-Installed and queried:
-  kubectl client: v1.35.5
-  k3d: v5.9.0
-  embedded k3s default: v1.35.5-k3s1
-  Docker: 29.9.3, build 5457199
-  jq: jq-1.6
-  Python: 3.9.25
-  Git: 2.52.0
-  Ansible: core 2.14.18
-  OpenTofu: v1.13.9, linux_amd64
-  Kubernetes cluster: v1.35.5+k3s1 (3 nodes Ready when checked)
+$ trivy --version
+Version: 0.76.2
 
-Not installed in this authoring workspace; no version or scan result claimed:
-  Trivy, gitleaks, kube-score, Checkov, Python pip/venv support
+$ gitleaks version
+8.30.1
 
-The course Shared VM setup is expected to provide the scanners. Run their
-version commands from the track README on the presentation/rebuild VM and
-replace this list with the versions actually used for the final evidence run.
-This file deliberately does not infer a version from a package manifest.
+$ kube-score version
+kube-score version: 1.20.0, commit: 81371e9f53b633bec69423fc298295bd71bd869a, built: 2025-04-28T16:54:40Z
+
+$ /home/moha2003/cybersecurity-governance-venv/bin/checkov --version
+3.4.3
+
+$ kubectl version --client
+Client Version: v1.35.5
+Kustomize Version: v5.7.1
+
+$ k3d version
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+
+$ docker --version
+Docker version 29.10.0, build fdd4b8e
+
+$ jq --version
+jq-1.6
+
+$ git --version
+git version 2.52.0
+
+$ python3 --version
+Python 3.9.25
+
+$ ansible --version | head -1
+ansible [core 2.14.18]
+
+$ tofu version | head -1
+OpenTofu v1.13.9

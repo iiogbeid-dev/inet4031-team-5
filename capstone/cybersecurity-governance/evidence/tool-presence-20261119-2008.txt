@@ -1,0 +1,9 @@
+Tool presence check - Team 5 - Sadiq - Thu Nov 19 08:08:00 PM CST 2026
+trivy       MISSING
+gitleaks    MISSING
+kube-score  MISSING
+kubectl     /usr/local/bin/kubectl
+k3d         /usr/local/bin/k3d
+jq          /usr/bin/jq
+git         /usr/bin/git
+docker      /usr/bin/docker

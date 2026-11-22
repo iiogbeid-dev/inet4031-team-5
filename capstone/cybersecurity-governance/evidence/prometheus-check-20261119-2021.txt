@@ -1,0 +1,12 @@
+Prometheus check - Team 5 - run by Sadiq - Thu Nov 19 08:21:46 PM CST 2026
+PROM_URL=http://localhost:9095 (script default)
+
+$ ./week-5/pq.sh 'up'
+beta_kubernetes_io_arch=amd64 beta_kubernetes_io_instance_type=k3s beta_kubernetes_io_os=linux instance=k3d-team-5-agent-1 job=kubernetes-nodes-cadvisor kubernetes_io_arch=amd64 kubernetes_io_hostname=k3d-team-5-agent-1 kubernetes_io_os=linux metrics_path=/metrics/cadvisor node_kubernetes_io_instance_type=k3s -> 1
+beta_kubernetes_io_arch=amd64 beta_kubernetes_io_instance_type=k3s beta_kubernetes_io_os=linux instance=k3d-team-5-agent-0 job=kubernetes-nodes-cadvisor kubernetes_io_arch=amd64 kubernetes_io_hostname=k3d-team-5-agent-0 kubernetes_io_os=linux metrics_path=/metrics/cadvisor node_kubernetes_io_instance_type=k3s -> 1
+instance=localhost:9090 job=prometheus -> 1
+beta_kubernetes_io_arch=amd64 beta_kubernetes_io_instance_type=k3s beta_kubernetes_io_os=linux instance=k3d-team-5-server-0 job=kubernetes-nodes-cadvisor kubernetes_io_arch=amd64 kubernetes_io_hostname=k3d-team-5-server-0 kubernetes_io_os=linux metrics_path=/metrics/cadvisor node_kubernetes_io_instance_type=k3s node_role_kubernetes_io_control_plane=true -> 1
+app_kubernetes_io_component=metrics app_kubernetes_io_instance=prometheus app_kubernetes_io_managed_by=Helm app_kubernetes_io_name=kube-state-metrics app_kubernetes_io_part_of=kube-state-metrics app_kubernetes_io_version=2.20.0 helm_sh_chart=kube-state-metrics-8.6.0 instance=10.42.0.166:8080 job=kubernetes-service-endpoints namespace=monitoring node=k3d-team-5-agent-0 service=prometheus-kube-state-metrics -> 1
+app_kubernetes_io_component=metrics app_kubernetes_io_instance=prometheus app_kubernetes_io_managed_by=Helm app_kubernetes_io_name=kube-state-metrics app_kubernetes_io_part_of=kube-state-metrics app_kubernetes_io_version=2.20.0 helm_sh_chart=kube-state-metrics-8.6.0 instance=10.42.0.166:8081 job=kubernetes-service-endpoints namespace=monitoring node=k3d-team-5-agent-0 service=prometheus-kube-state-metrics -> 1
+app=flask instance=10.42.1.155:5000 job=kubernetes-service-endpoints namespace=default node=k3d-team-5-agent-1 service=flask -> 1
+instance=10.42.1.159:9153 job=kubernetes-service-endpoints k8s_app=kube-dns kubernetes_io_cluster_service=true kubernetes_io_name=CoreDNS namespace=kube-system node=k3d-team-5-agent-1 objectset_rio_cattle_io_hash=bce283298811743a0386ab510f2f67ef74240c57 service=kube-dns -> 1
