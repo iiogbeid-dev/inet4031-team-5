@@ -1,0 +1,30 @@
+Tool versions - Team 5 shared RHEL VM (caps-inet4031-dev-app-02) - recorded by Sadiq - Thu Nov 19 08:25:10 PM CST 2026
+
+$ trivy --version
+Version: 0.76.2
+
+$ gitleaks version
+-bash: /usr/local/bin/gitleaks: Permission denied
+
+$ kube-score version
+-bash: kube-score: command not found
+
+$ /home/moha2003/cybersecurity-governance-venv/bin/checkov --version
+3.4.3
+
+$ kubectl version --client
+Client Version: v1.35.5
+Kustomize Version: v5.7.1
+
+$ k3d version
+k3d version v5.9.0
+k3s version v1.35.5-k3s1 (default)
+
+$ jq --version
+jq-1.6
+
+$ git --version
+git version 2.52.0
+
+$ docker --version
+Docker version 29.10.0, build fdd4b8e
